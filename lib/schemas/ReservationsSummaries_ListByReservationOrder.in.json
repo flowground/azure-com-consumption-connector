@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "reservationOrderId": {
+            "required": true,
+            "type": "string"
+        },
+        "grain": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "daily",
+                "monthly"
+            ]
+        },
+        "_filter": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

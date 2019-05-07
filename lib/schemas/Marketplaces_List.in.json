@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "scope": {
+            "required": true,
+            "type": "string"
+        },
+        "_filter": {
+            "required": false,
+            "type": "string"
+        },
+        "_top": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+        },
+        "_skiptoken": {
+            "required": false,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

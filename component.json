@@ -1,0 +1,407 @@
+{
+    "title": "ConsumptionManagementClient",
+    "description": "Consumption management client provides access to consumption resources for Azure Enterprise Subscriptions.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/consumption/2019-01-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Balances_GetForBillingPeriodByBillingAccount": {
+            "main": "./lib/actions/Balances_GetForBillingPeriodByBillingAccount.js",
+            "title": "Gets the balances for a scope by billing period and billingAccountId. Balances are available via this API only for May 1, 2014 or later.",
+            "description": "Gets the balances for a scope by billing period and billingAccountId. Balances are available via this API only for May 1, 2014 or later.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Balances_GetForBillingPeriodByBillingAccount.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Balances_GetByBillingAccount": {
+            "main": "./lib/actions/Balances_GetByBillingAccount.js",
+            "title": "Gets the balances for a scope by billingAccountId. Balances are available via this API only for May 1, 2014 or later.",
+            "description": "Gets the balances for a scope by billingAccountId. Balances are available via this API only for May 1, 2014 or later.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Balances_GetByBillingAccount.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationsDetails_ListByReservationOrder": {
+            "main": "./lib/actions/ReservationsDetails_ListByReservationOrder.js",
+            "title": "Lists the reservations details for provided date range.",
+            "description": "Lists the reservations details for provided date range.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationsDetails_ListByReservationOrder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationsSummaries_ListByReservationOrder": {
+            "main": "./lib/actions/ReservationsSummaries_ListByReservationOrder.js",
+            "title": "Lists the reservations summaries for daily or monthly grain.",
+            "description": "Lists the reservations summaries for daily or monthly grain.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationsSummaries_ListByReservationOrder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationsDetails_ListByReservationOrderAndReservation": {
+            "main": "./lib/actions/ReservationsDetails_ListByReservationOrderAndReservation.js",
+            "title": "Lists the reservations details for provided date range.",
+            "description": "Lists the reservations details for provided date range.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationsDetails_ListByReservationOrderAndReservation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationsSummaries_ListByReservationOrderAndReservation": {
+            "main": "./lib/actions/ReservationsSummaries_ListByReservationOrderAndReservation.js",
+            "title": "Lists the reservations summaries for daily or monthly grain.",
+            "description": "Lists the reservations summaries for daily or monthly grain.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationsSummaries_ListByReservationOrderAndReservation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available consumption REST API operations.",
+            "description": "Lists all of the available consumption REST API operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AggregatedCost_GetForBillingPeriodByManagementGroup": {
+            "main": "./lib/actions/AggregatedCost_GetForBillingPeriodByManagementGroup.js",
+            "title": "Provides the aggregate cost of a management group and all child management groups by specified billing period",
+            "description": "Provides the aggregate cost of a management group and all child management groups by specified billing period",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AggregatedCost_GetForBillingPeriodByManagementGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AggregatedCost_GetByManagementGroup": {
+            "main": "./lib/actions/AggregatedCost_GetByManagementGroup.js",
+            "title": "Provides the aggregate cost of a management group and all child management groups by current billing period.",
+            "description": "Provides the aggregate cost of a management group and all child management groups by current billing period.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AggregatedCost_GetByManagementGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PriceSheet_GetByBillingPeriod": {
+            "main": "./lib/actions/PriceSheet_GetByBillingPeriod.js",
+            "title": "Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only for May 1, 2014 or later.",
+            "description": "Get the price sheet for a scope by subscriptionId and billing period. Price sheet is available via this API only for May 1, 2014 or later.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PriceSheet_GetByBillingPeriod.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Forecasts_List": {
+            "main": "./lib/actions/Forecasts_List.js",
+            "title": "Lists the forecast charges by subscriptionId.",
+            "description": "Lists the forecast charges by subscriptionId.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Forecasts_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PriceSheet_Get": {
+            "main": "./lib/actions/PriceSheet_Get.js",
+            "title": "Gets the price sheet for a scope by subscriptionId. Price sheet is available via this API only for May 1, 2014 or later.",
+            "description": "Gets the price sheet for a scope by subscriptionId. Price sheet is available via this API only for May 1, 2014 or later.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PriceSheet_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ReservationRecommendations_List": {
+            "main": "./lib/actions/ReservationRecommendations_List.js",
+            "title": "List of recommendations for purchasing reserved instances.",
+            "description": "List of recommendations for purchasing reserved instances.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ReservationRecommendations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Budgets_List": {
+            "main": "./lib/actions/Budgets_List.js",
+            "title": "Lists all budgets for the defined scope.",
+            "description": "Lists all budgets for the defined scope.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Budgets_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Budgets_Delete": {
+            "main": "./lib/actions/Budgets_Delete.js",
+            "title": "The operation to delete a budget.",
+            "description": "The operation to delete a budget.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Budgets_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Budgets_Get": {
+            "main": "./lib/actions/Budgets_Get.js",
+            "title": "Gets the budget for the scope by budget name.",
+            "description": "Gets the budget for the scope by budget name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Budgets_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Budgets_CreateOrUpdate": {
+            "main": "./lib/actions/Budgets_CreateOrUpdate.js",
+            "title": "The operation to create or update a budget. Update operation requires latest eTag to be set in the request mandatorily. You may obtain the latest eTag by performing a get operation. Create operation does not require eTag.",
+            "description": "The operation to create or update a budget. Update operation requires latest eTag to be set in the request mandatorily. You may obtain the latest eTag by performing a get operation. Create operation does not require eTag.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Budgets_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Charges_ListByScope": {
+            "main": "./lib/actions/Charges_ListByScope.js",
+            "title": "Lists the charges based for the defined scope.",
+            "description": "Lists the charges based for the defined scope.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Charges_ListByScope.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Marketplaces_List": {
+            "main": "./lib/actions/Marketplaces_List.js",
+            "title": "Lists the marketplaces for a scope at the defined scope. Marketplaces are available via this API only for May 1, 2014 or later.",
+            "description": "Lists the marketplaces for a scope at the defined scope. Marketplaces are available via this API only for May 1, 2014 or later.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Marketplaces_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Tags_Get": {
+            "main": "./lib/actions/Tags_Get.js",
+            "title": "Get all available tag keys for the defined scope",
+            "description": "Get all available tag keys for the defined scope",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Tags_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "UsageDetails_List": {
+            "main": "./lib/actions/UsageDetails_List.js",
+            "title": "Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or later.",
+            "description": "Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or later.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/UsageDetails_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "_expand": {
+            "required": false,
+            "type": "string"
+        },
+        "_skiptoken": {
+            "required": false,
+            "type": "string"
+        },
+        "_top": {
+            "required": false,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

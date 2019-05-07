@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "reservationOrderId": {
+            "required": true,
+            "type": "string"
+        },
+        "reservationId": {
+            "required": true,
+            "type": "string"
+        },
+        "_filter": {
+            "required": true,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

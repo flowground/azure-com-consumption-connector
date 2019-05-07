@@ -1,0 +1,241 @@
+{
+    "type": "object",
+    "properties": {
+        "scope": {
+            "required": true,
+            "type": "string"
+        },
+        "budgetName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "The Resource model definition.",
+                    "properties": {
+                        "eTag": {
+                            "description": "eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the user is updating the latest version or not.",
+                            "type": "string"
+                        },
+                        "id": {
+                            "description": "Resource Id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "A budget resource.",
+            "properties": {
+                "properties": {
+                    "title": "Budget properties",
+                    "x-ms-client-flatten": true,
+                    "description": "The properties of the budget.",
+                    "properties": {
+                        "amount": {
+                            "description": "The total amount of cost to track with the budget",
+                            "format": "decimal",
+                            "type": "number"
+                        },
+                        "category": {
+                            "description": "The category of the budget, whether the budget tracks cost or usage.",
+                            "enum": [
+                                "Cost",
+                                "Usage"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "CategoryType"
+                            }
+                        },
+                        "currentSpend": {
+                            "description": "The current amount of cost which is being tracked for a budget.",
+                            "readOnly": true,
+                            "properties": {
+                                "amount": {
+                                    "description": "The total amount of cost which is being tracked by the budget.",
+                                    "format": "decimal",
+                                    "readOnly": true,
+                                    "type": "number"
+                                },
+                                "unit": {
+                                    "description": "The unit of measure for the budget amount.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "filters": {
+                            "description": "May be used to filter budgets by resource group, resource, or meter.",
+                            "type": "object",
+                            "properties": {
+                                "meters": {
+                                    "description": "The list of filters on meters (GUID), mandatory for budgets of usage category. ",
+                                    "items": {
+                                        "format": "uuid",
+                                        "type": "string"
+                                    },
+                                    "maxItems": 10,
+                                    "minItems": 0,
+                                    "type": "array"
+                                },
+                                "resourceGroups": {
+                                    "description": "The list of filters on resource groups, allowed at subscription level only.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "maxItems": 10,
+                                    "minItems": 0,
+                                    "type": "array"
+                                },
+                                "resources": {
+                                    "description": "The list of filters on resources.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "maxItems": 10,
+                                    "minItems": 0,
+                                    "type": "array"
+                                },
+                                "tags": {
+                                    "additionalProperties": {
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "description": "The dictionary of filters on tags.",
+                                    "maxItems": 10,
+                                    "minItems": 0,
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "notifications": {
+                            "additionalProperties": {
+                                "type": "object",
+                                "description": "The notification associated with a budget.",
+                                "properties": {
+                                    "contactEmails": {
+                                        "description": "Email addresses to send the budget notification to when the threshold is exceeded.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "maxItems": 50,
+                                        "minItems": 1,
+                                        "type": "array"
+                                    },
+                                    "contactGroups": {
+                                        "description": "Action groups to send the budget notification to when the threshold is exceeded.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "maxItems": 50,
+                                        "minItems": 0,
+                                        "type": "array"
+                                    },
+                                    "contactRoles": {
+                                        "description": "Contact roles to send the budget notification to when the threshold is exceeded.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "enabled": {
+                                        "description": "The notification is enabled or not.",
+                                        "type": "boolean"
+                                    },
+                                    "operator": {
+                                        "description": "The comparison operator.",
+                                        "enum": [
+                                            "EqualTo",
+                                            "GreaterThan",
+                                            "GreaterThanOrEqualTo"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": true,
+                                            "name": "OperatorType"
+                                        }
+                                    },
+                                    "threshold": {
+                                        "description": "Threshold value associated with a notification. Notification is sent when the cost exceeded the threshold. It is always percent and has to be between 0 and 1000.",
+                                        "format": "decimal",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "enabled",
+                                    "operator",
+                                    "threshold",
+                                    "contactEmails"
+                                ]
+                            },
+                            "description": "Dictionary of notifications associated with the budget. Budget can have up to five notifications.",
+                            "maxItems": 5,
+                            "type": "object"
+                        },
+                        "timeGrain": {
+                            "description": "The time covered by a budget. Tracking of the amount will be reset based on the time grain.",
+                            "enum": [
+                                "Monthly",
+                                "Quarterly",
+                                "Annually"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "TimeGrainType"
+                            }
+                        },
+                        "timePeriod": {
+                            "description": "Has start and end date of the budget. The start date must be first of the month and should be less than the end date. Budget start date must be on or after June 1, 2017. Future start date should not be more than three months. Past start date should  be selected within the timegrain period. There are no restrictions on the end date.",
+                            "properties": {
+                                "endDate": {
+                                    "description": "The end date for the budget. If not provided, we default this to 10 years from the start date.",
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                "startDate": {
+                                    "description": "The start date for the budget.",
+                                    "format": "date-time",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "startDate"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "category",
+                        "amount",
+                        "timeGrain",
+                        "timePeriod"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
